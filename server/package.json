@@ -1,0 +1,37 @@
+{
+  "name": "news-pro-server",
+  "version": "1.0.0",
+  "description": "server for news-pro",
+  "main": "server.js",
+  "scripts": {
+    "test": "jest",
+    "dev": "NODE_ENV=development nodemon api/server.js",
+    "start": "NODE_ENV=production node api/server.js"
+  },
+  "author": "Ben Dawit",
+  "license": "ISC",
+  "dependencies": {
+    "axios": "^0.26.1",
+    "bcryptjs": "^2.4.3",
+    "body-parser": "^1.19.0",
+    "cookie-parser": "^1.4.5",
+    "cors": "^2.8.5",
+    "dotenv": "^16.0.0",
+    "express": "^4.17.2",
+    "express-jwt": "^6.0.0",
+    "joi": "^17.2.1",
+    "jsonwebtoken": "^8.5.1",
+    "next": "^12.0.9",
+    "nodemailer": "^6.7.3",
+    "pg": "^8.7.3",
+    "pg-hstore": "^2.3.4",
+    "rootpath": "^0.1.2",
+    "sequelize": "^6.3.4",
+    "swagger-ui-express": "^4.1.4",
+    "yamljs": "^0.3.0"
+  },
+  "devDependencies": {
+    "jest": "^27.5.1",
+    "nodemon": "^2.0.15"
+  }
+}
