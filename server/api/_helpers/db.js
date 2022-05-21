@@ -17,20 +17,21 @@ async function initialize() {
         // connect to db
         const sequelize = new Sequelize(database, user, password, { 
             host: config.database.host,
-            dialect: 'postgre' 
+            dialect: 'mysql' 
         });
 
         // init models and add them to the exported db object
         db.Account = require('../accounts/account.model')(sequelize);
         db.RefreshToken = require('../accounts/refresh-token.model')(sequelize);
-        db.Pantry = require('../food/pantry.model')(sequelize);
+        // db.Pantry = require('../food/pantry.model')(sequelize);
 
         // define relationships
         db.Account.hasMany(db.RefreshToken, { onDelete: 'CASCADE' });
         db.RefreshToken.belongsTo(db.Account);
         
-        db.Account.hasOne(db.Pantry, { onDelete: 'CASCADE' });
-        db.Pantry.belongsTo(db.Account);
+        // db.Account.hasOne(db.Pantry, { onDelete: 'CASCADE' });
+        // db.Pantry.belongsTo(db.Account);
+
         // sync all models with database
         await sequelize.sync();
     }
