@@ -4,20 +4,22 @@ const { Op } = require('sequelize');
 const puppeteer = require ('puppeteer');
 
 module.exports = {
-    scrapeCNN
+    scrapeNews
 };
 
-async function scrapeCNN(){
+async function scrapeNews(){
     
     const browser = await puppeteer.launch();
     const page = await browser.newPage();
-    await page.goto('https://www.cnn.com/');
-
-    await page.screenshot({ path: 'screenshot.png'})
-}
-// async function scrapeFox(){
     
-//     const browser = await puppeteer.launch();
-//     const page = await browser.newPage();
-//     await page.goto('https://www.foxnews.com/')
-// }
+    //scraping cnn
+    await page.goto('https://www.cnn.com/');
+    await page.screenshot({ path: `cnn${Date.now()}.png`})
+
+    //scraping fox
+    await page.goto('https://www.foxnews.com/');
+    await page.screenshot({ path: `fox${Date.now()}.png`})
+
+    await browser.close();
+    return 
+}

@@ -13,7 +13,7 @@ router.get('/scrape',  scrape);
 
 module.exports = router;
 function scrape(req, res, next) {
-    newsService.scrapeCNN()
+    newsService.scrapeNews()
         .then(() => {
             res.json({
                 message: "scraped correctly!"
