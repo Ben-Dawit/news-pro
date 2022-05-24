@@ -23,5 +23,8 @@ const config = {
         }
     },
 
+    "s3": {
+        
+    }
 };
 module.exports = config;
