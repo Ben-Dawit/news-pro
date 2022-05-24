@@ -15,10 +15,10 @@ router.get('/test', test);
 module.exports = router;
 
 function test(req,res,next){
-    res.json({
+    res.status(200).json({
         message: "test successful!"
     })
-    .catch(next);
+    console.log("hi")
 }
 function scrape(req, res, next) {
     newsService.scrapeNews()
