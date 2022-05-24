@@ -8,6 +8,7 @@ const errorHandler = require('api/_middleware/error-handler');
 require('dotenv').config();
 
 
+
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 app.use(cookieParser());
@@ -26,7 +27,11 @@ app.use('/', require('api/_helpers/swagger'));
 // global error handler
 app.use(errorHandler);
 
+//exports this for tests (needs to export the entire app so tests can launch on multiple ports.)
+module.exports = app
+
 // start server
-const port = process.env.NODE_ENV === 'production' ? (process.env.PORT || 80) : 4000;
-app.listen(port, () => console.log('Server listening on port ' + port));
+// const port = process.env.NODE_ENV === 'production' ? (process.env.PORT || 80) : 4000;
+// app.listen(port, () => console.log('Server listening on port ' + port));
+
 

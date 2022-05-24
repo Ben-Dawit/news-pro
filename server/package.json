@@ -5,8 +5,8 @@
   "main": "server.js",
   "scripts": {
     "test": "jest",
-    "dev": "nodemon api/server.js",
-    "start": "NODE_ENV=production node api/server.js"
+    "dev": "NODE_ENV=development nodemon api/start.js",
+    "start": "NODE_ENV=production node api/start.js"
   },
   "author": "Ben Dawit",
   "license": "ISC",
@@ -14,6 +14,10 @@
     "verbose": true,
     "modulePaths": [
       "<rootDir>"
+    ],
+    "testEnvironment": "node",
+    "coveragePathIgnorePatterns": [
+      "/node_modules/"
     ]
   },
   "dependencies": {
