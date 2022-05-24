@@ -10,7 +10,14 @@
   },
   "author": "Ben Dawit",
   "license": "ISC",
+  "jest": {
+    "verbose": true,
+    "modulePaths": [
+      "<rootDir>"
+    ]
+  },
   "dependencies": {
+    "@aws-sdk/client-s3": "^3.95.0",
     "axios": "^0.26.1",
     "bcryptjs": "^2.4.3",
     "body-parser": "^1.19.0",
