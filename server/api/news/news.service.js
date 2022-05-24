@@ -3,6 +3,8 @@ const jwt = require('jsonwebtoken');
 const { Op } = require('sequelize');
 const puppeteer = require ('puppeteer');
 const fs = require('fs');
+// Load the SDK for JavaScript
+
 
 module.exports = {
     scrapeNews
@@ -26,7 +28,7 @@ async function scrapeNews(){
     
     //scraping cnn
     await page.goto('https://www.cnn.com/');
-    page.setViewport({width: 351, height: 518})
+    page.setViewport({width: 960, height: 820})
     await page.screenshot({ path: cnnPath})
 
     //deletes cnn file (optional, used for development)
@@ -34,7 +36,7 @@ async function scrapeNews(){
 
     //scraping fox and bypassing popup
     await page.goto('https://www.foxnews.com/');
-    page.setViewport({width: 351, height: 518})
+    page.setViewport({width: 960, height: 820})
     
     //fox sometimes has a popup you need to close by clicking the x button, this does that.
     await page.click(foxPopUp);
