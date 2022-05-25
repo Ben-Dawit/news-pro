@@ -3,12 +3,18 @@ const jwt = require('jsonwebtoken');
 const { Op } = require('sequelize');
 const puppeteer = require ('puppeteer');
 const fs = require('fs');
+var AWS = require('aws-sdk');
+// Set the Region 
+AWS.config.update({region: 'us-east-2'});
+s3 = new AWS.S3();
 // Load the SDK for JavaScript
 
 
 module.exports = {
-    scrapeNews
+    scrapeNews,
+    saveToS3
 };
+
 
 async function scrapeNews(){
     
@@ -39,10 +45,34 @@ async function scrapeNews(){
     page.setViewport({width: 960, height: 820})
     
     //fox sometimes has a popup you need to close by clicking the x button, this does that.
+    
     await page.click(foxPopUp);
     await page.screenshot({ path: foxPath })
 
     await browser.close();
 
     return 
+}
+async function saveToS3(){
+    let today = new Date().toISOString().slice(0, 10)
+    //name of cnn and fox files\
+    var cnnPath = `cnn${today}.png`;
+    var foxPath = `fox${today}.png`;
+    var cnnBlob = fs.readFileSync(`cnn${today}.png`);
+    var foxBlob = fs.readFileSync(`fox${today}.png`);
+
+    
+    const cnnUploadedImage = await s3.upload({
+        Bucket: config.s3.AWS_S3_BUCKET_NAME,
+        Key: cnnPath,
+        Body: cnnBlob,
+    }).promise()
+
+    const foxUploadedImage = await s3.upload({
+        Bucket: config.s3.AWS_S3_BUCKET_NAME,
+        Key: foxPath,
+        Body: foxBlob,
+    }).promise()
+
+    return(cnnUploadedImage.location, foxUploadedImage.location)
 }
