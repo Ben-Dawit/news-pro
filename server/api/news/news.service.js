@@ -40,13 +40,16 @@ async function scrapeNews(){
     //deletes cnn file (optional, used for development)
     // await fs.unlink(cnnPath);
 
-    //scraping fox and bypassing popup
+    
     await page.goto('https://www.foxnews.com/');
     page.setViewport({width: 960, height: 820})
     
-    //fox sometimes has a popup you need to close by clicking the x button, this does that.
+    //fox sometimes has a popup you need to close by clicking the close popup button. 
+    //this checks if the close popup button exists, then closes if necessary.
+    if(await page.$selector(foxPopUp) === true){
+        await page.click(foxPopUp);
+    }
     
-    await page.click(foxPopUp);
     await page.screenshot({ path: foxPath })
 
     await browser.close();
@@ -55,7 +58,7 @@ async function scrapeNews(){
 }
 async function saveToS3(){
     let today = new Date().toISOString().slice(0, 10)
-    //name of cnn and fox files\
+    //name of cnn and fox files
     var cnnPath = `cnn${today}.png`;
     var foxPath = `fox${today}.png`;
     var cnnBlob = fs.readFileSync(`cnn${today}.png`);
@@ -63,16 +66,16 @@ async function saveToS3(){
 
     
     const cnnUploadedImage = await s3.upload({
-        Bucket: config.s3.AWS_S3_BUCKET_NAME,
+        Bucket: config.s3.bucketName,
         Key: cnnPath,
         Body: cnnBlob,
     }).promise()
 
     const foxUploadedImage = await s3.upload({
-        Bucket: config.s3.AWS_S3_BUCKET_NAME,
+        Bucket: config.s3.bucketName,
         Key: foxPath,
         Body: foxBlob,
     }).promise()
 
-    return(cnnUploadedImage.location, foxUploadedImage.location)
+    return(cnnUploadedImage.Location, foxUploadedImage.Location)
 }
