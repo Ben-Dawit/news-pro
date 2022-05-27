@@ -5,8 +5,9 @@
   "main": "server.js",
   "scripts": {
     "test": "jest",
-    "dev": "NODE_ENV=development nodemon api/start.js",
-    "start": "NODE_ENV=production node api/start.js"
+    "dev": "nodemon api/start.js",
+    "start": "node api/start.js",
+    "tryaws": "nodemon api/aws.js"
   },
   "author": "Ben Dawit",
   "license": "ISC",
@@ -22,6 +23,7 @@
   },
   "dependencies": {
     "@aws-sdk/client-s3": "^3.95.0",
+    "aws-sdk": "^2.1142.0",
     "axios": "^0.26.1",
     "bcryptjs": "^2.4.3",
     "body-parser": "^1.19.0",
