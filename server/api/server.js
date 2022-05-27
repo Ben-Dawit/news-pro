@@ -29,9 +29,3 @@ app.use(errorHandler);
 
 //exports this for tests (needs to export the entire app so tests can launch on multiple ports.)
 module.exports = app
-
-// start server
-// const port = process.env.NODE_ENV === 'production' ? (process.env.PORT || 80) : 4000;
-// app.listen(port, () => console.log('Server listening on port ' + port));
-
-
