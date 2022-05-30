@@ -11,7 +11,9 @@ function Home() {
                 <h1>Hi {user.firstName}!</h1>
                 <p>You're logged in with React & JWT!!</p>
             </div>
+            <body><div id="app"></div></body>
         </div>
+        
     );
 }
 
