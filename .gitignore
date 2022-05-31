@@ -37,3 +37,6 @@ node_modules
 
 #pem key files
 *.pem
+
+#images
+*.png
