@@ -76,4 +76,5 @@ async function saveToS3(){
     }).promise()
 
     return(cnnUploadedImage.Location, foxUploadedImage.Location)
+
 }

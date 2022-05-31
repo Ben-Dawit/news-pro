@@ -1,25 +1,35 @@
-import logo from './logo.svg';
-import './App.css';
+import React from 'react';
+import {Container, AppBar, Typography, Grow, Grid, Button} from '@material-ui/core';
+import News from './components/News/News';
+import Calendar from './components/Calendar/Calendar'
+import useStyles from '.styles';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+const App = () => {
+    const classes = useStyles();
+    return (
+        <Container maxWidth = "lg">
+            <AppBar className = {classes.AppBar} position = "static" color = "inherit">
+                <Typography variant = "h2" align = "center">NewsPro</Typography>
+                <Button variant="contained">Sign Up</Button>
+                <Button variant="outlined">Log In</Button>
+            </AppBar>
+            <Grow in>
+                <Container>
+                    <Grid container justify="space-between" alignItems="stretch" spacing = "3">
+                        <Grid item xs = "12" sm = "7">
+                            <News />
+
+                        </Grid>
+                        <Grid item xs = "12" sm = "4">
+                            <Calendar />
+                            
+                        </Grid>
+                    </Grid>
+                </Container>
+            </Grow>
+        </Container>
+        
+    )
 }
 
 export default App;

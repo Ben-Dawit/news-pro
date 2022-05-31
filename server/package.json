@@ -6,8 +6,7 @@
   "scripts": {
     "test": "jest",
     "dev": "nodemon api/start.js",
-    "start": "node api/start.js",
-    "tryaws": "nodemon api/aws.js"
+    "start": "node api/start.js"
   },
   "author": "Ben Dawit",
   "license": "ISC",

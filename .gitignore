@@ -38,5 +38,5 @@ node_modules
 #pem key files
 *.pem
 
-#active image files in dev env
+#images
 *.png
