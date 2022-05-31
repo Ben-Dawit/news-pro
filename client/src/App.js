@@ -2,11 +2,13 @@ import React from 'react';
 import {Container, AppBar, Typography, Grow, Grid, Button} from '@material-ui/core';
 import News from './components/News/News';
 import Calendar from './components/Calendar/Calendar'
+import useStyles from '.styles';
 
 const App = () => {
+    const classes = useStyles();
     return (
         <Container maxWidth = "lg">
-            <AppBar position = "static" color = "inherit">
+            <AppBar className = {classes.AppBar} position = "static" color = "inherit">
                 <Typography variant = "h2" align = "center">NewsPro</Typography>
                 <Button variant="contained">Sign Up</Button>
                 <Button variant="outlined">Log In</Button>
