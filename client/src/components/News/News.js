@@ -1,9 +1,9 @@
 import React from 'react';
-import Images from './News/Images'
+import Images from './Images/Images'
 
 const News = () =>{
     return (
-        <></>
+        <Images />
     )
 }
 
