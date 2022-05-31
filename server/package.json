@@ -5,8 +5,8 @@
   "main": "server.js",
   "scripts": {
     "test": "jest",
-    "dev": "NODE_ENV=development nodemon api/start.js",
-    "start": "NODE_ENV=production node api/start.js"
+    "dev": "nodemon api/start.js",
+    "start": "node api/start.js"
   },
   "author": "Ben Dawit",
   "license": "ISC",
