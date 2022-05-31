@@ -24,7 +24,9 @@ const config = {
     },
 
     "s3": {
-        
+        "bucketName": process.env.AWS_S3_BUCKET_NAME,
+        "accessKey": process.env.AWS_S3_ACCESS_KEY_ID,
+        "secretAccessKey": process.env.AWS_S3_SECRET_ACCESS_KEY
     }
 };
 module.exports = config;

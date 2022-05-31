@@ -11,6 +11,7 @@ const newsService = require('./news.service');
 //EX: https://url.com/accounts/authenticate
 router.get('/scrape',  scrape);
 router.get('/test', test);
+router.get('/save', saveNews )
 
 module.exports = router;
 
@@ -20,12 +21,21 @@ function test(req,res,next){
     })
     console.log("hi")
 }
+
+//scrapes the news from www.cnn.com & www.foxnews.com
 function scrape(req, res, next) {
     newsService.scrapeNews()
-        .then(() => {
+    .catch(next);
+}
+
+//saves the news images to the cloud.
+function saveNews(req,res,next){
+    newsService.saveToS3()
+        .then((cnn, fox) =>
             res.json({
-                message: "scraped correctly!"
-            });
-        })
-        .catch(next);
+                cnnLocation: cnn,
+                foxLocation: fox
+            })
+        )
+        .catch(next)
 }
