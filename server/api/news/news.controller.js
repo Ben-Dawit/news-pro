@@ -26,7 +26,7 @@ function test(req,res,next){
 function scrape(req, res, next) {
     newsService.scrapeNews()
     .catch(next);
-  
+}
 //saves the news images to the cloud.
 function saveNews(req,res,next){
     newsService.saveToS3()

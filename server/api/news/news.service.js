@@ -67,12 +67,14 @@ async function saveToS3(){
         Bucket: config.s3.bucketName,
         Key: cnnPath,
         Body: cnnBlob,
+        ContentType: 'image/png'
     }).promise()
 
     const foxUploadedImage = await s3.upload({
         Bucket: config.s3.bucketName,
         Key: foxPath,
         Body: foxBlob,
+        ContentType: 'image/png'
     }).promise()
 
     return(cnnUploadedImage.Location, foxUploadedImage.Location)
