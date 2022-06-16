@@ -24,20 +24,20 @@ async function scrapeNews(){
     //name of cnn and fox files
     var cnnPath = `images/cnn${today}.png`;
     var foxPath = `images/fox${today}.png`;
-    const foxPopUp = "#eb627c06237410f1288451ba37fc71e9 > div > div > div > button";
 
 
     //launching browser
     const browser = await puppeteer.launch();
     
     const page = await browser.newPage();
-    
+
+    await page.setDefaultNavigationTimeout(0);
     //scraping cnn
     await page.goto('https://www.cnn.com/');
     page.setViewport({width: 960, height: 820})
     await page.waitForTimeout(3000)
     await page.screenshot({ path: cnnPath})
-
+    console.log("cnn screenshot complete")
     // deletes cnn file (optional, used for development)
     // await fs.unlink(cnnPath);
 
@@ -46,10 +46,13 @@ async function scrapeNews(){
     
     //fox sometimes has a popup you need to close by clicking the close popup button. 
     //this checks if the close popup button exists, then closes if necessary.
-    if(await page.$(foxPopUp) === true){
-        await page.click(foxPopUp);
+    const foxNewsLetter = "#eb627c06237410f1288451ba37fc71e9 > div > div > div > button";
+    const foxElon = "#\33 111078b5b9c1825e4e5c5f6116917e2 > div > div > div > button"
+    if(await page.$(foxNewsLetter) === true || await page.$(foxElon)){
+        await page.click(foxNewsLetter);
     }
     await page.screenshot({ path: foxPath })
+    console.log("fox screenshot complete")
 
     await browser.close();
     return 
