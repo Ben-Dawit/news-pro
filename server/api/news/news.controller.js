@@ -9,9 +9,11 @@ const newsService = require('./news.service');
 // routes
 //note: all routes begin with /accounts. 
 //EX: https://url.com/accounts/authenticate
-router.get('/scrape',  scrape);
+router.get('/scrape', scrape);
 router.get('/test', test);
 router.get('/save', saveNews )
+// router.get('/close', close)
+// router.get('/open', open)
 
 module.exports = router;
 
@@ -22,10 +24,22 @@ function test(req,res,next){
     console.log("hi")
 }
 
+// function close(res,next){
+//     newsService.closeBrowser()
+//         .catch(next);
+// }
+// function open(res,next){
+//     newsService.openBrowser()
+//         .catch(next)
+// }
+
 //scrapes the news from www.cnn.com & www.foxnews.com
 function scrape(req, res, next) {
     newsService.scrapeNews()
-    .catch(next);
+        .then(()=>res.json({
+            message: "scrape successful"
+        }))
+        .catch(next);
 }
 //saves the news images to the cloud.
 function saveNews(req,res,next){
