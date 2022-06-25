@@ -27,7 +27,7 @@ async function scrapeNews(){
 
 
     //launching browser
-    const browser = await puppeteer.launch();
+    const browser = await puppeteer.launch({headless: false});
     
     const page = await browser.newPage();
 
@@ -46,15 +46,19 @@ async function scrapeNews(){
     
     //fox sometimes has a popup you need to close by clicking the close popup button. 
     //this checks if the close popup button exists, then closes if necessary.
-    const foxNewsLetter = "#eb627c06237410f1288451ba37fc71e9 > div > div > div > button";
-    const foxElon = "#\33 111078b5b9c1825e4e5c5f6116917e2 > div > div > div > button"
-    if(await page.$(foxNewsLetter) === true || await page.$(foxElon)){
-        await page.click(foxNewsLetter);
-    }
+    // const foxNewsLetter = ".pf-widget-close";
+    // // const foxElon = "#\33 111078b5b9c1825e4e5c5f6116917e2 > div > div > div > button"
+    // if(await page.$(foxNewsLetter) === true){ // for elon pop up, add htis back in '|| await page.$(foxElon) === true'
+    //     await page.click(foxNewsLetter);
+    //     console.log("attempted to click");
+    // }
+    // if(await page.$(foxNewsLetter) === null ){
+    //     console.log("fox news letter not found")
+    // }
     await page.screenshot({ path: foxPath })
     console.log("fox screenshot complete")
 
-    await browser.close();
+    // await browser.close();
     return 
 }
 async function saveToS3(){
