@@ -1,8 +1,8 @@
 import React from 'react';
 import {Container, AppBar, Typography, Grow, Grid, Button} from '@material-ui/core';
 import News from './components/News/News';
-import Calendar from './components/Calendar/Calendar'
-import useStyles from '.styles';
+import DatePick from './components/DatePick/DatePick'
+import useStyles from './styles';
 
 const App = () => {
     const classes = useStyles();
@@ -21,7 +21,7 @@ const App = () => {
 
                         </Grid>
                         <Grid item xs = "12" sm = "4">
-                            <Calendar />
+                            <DatePick />
                             
                         </Grid>
                     </Grid>
