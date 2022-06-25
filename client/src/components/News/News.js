@@ -1,13 +1,13 @@
 import React from 'react';
-import useStyles from './styles'
+// import useStyles from './styles'
 
 const News = () =>{
 
-    const classes = useStyles();
+    // const classes = useStyles();
 
     return (
         <div>
-            <h1>News</h1>
+            {/* <h1>News</h1>
             <ImageList sx={{ width: 960, height: 820 }} cols={2} rowHeight={164} variant='standard'>
                 {itemData.map((item) => (
                     <ImageListItem key={item.img}>
@@ -19,7 +19,7 @@ const News = () =>{
                     />
                     </ImageListItem>
                 ))}
-            </ImageList>
+            </ImageList> */}
         </div>
     )
 }
