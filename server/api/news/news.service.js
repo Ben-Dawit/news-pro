@@ -47,27 +47,16 @@ async function scrapeNews(){
     //fox sometimes has a popup you need to close by clicking the close popup button. 
     //this checks if the close popup button exists, then closes if necessary.
     
-    let foxNewsLetter = await page.evaluate(() => {
-        let elements = document.getElementsByClassName(".pf-widget-close");
 
-        return elements;
-    });
-    const [button] = await page.$x("//button[contains(., '×')]");
-    if (button) {
-        await button.click();
+    const [foxPopUp] = await page.$x("//button[contains(., '×')]"); //clicks on any pop up with text 'x' (it's a specific character, not just the letter x)
+    if (foxPopUp) {
+        await foxPopUp.click();
     }
-    // const foxElon = "#\33 111078b5b9c1825e4e5c5f6116917e2 > div > div > div > button"
-    // if(await page.$(foxNewsLetter) === true){ // for elon pop up, add htis back in '|| await page.$(foxElon) === true'
-    //     await page.click(foxNewsLetter);
-    //     console.log("attempted to click");
-    // }
-    // else{
-    //     console.log("fox news letter not found")
-    // }
+    
     await page.screenshot({ path: foxPath })
     console.log("fox screenshot complete")
 
-    // await browser.close();
+    await browser.close();
     return 
 }
 
