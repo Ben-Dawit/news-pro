@@ -27,7 +27,7 @@ async function scrapeNews(){
 
 
     //launching browser
-    const browser = await puppeteer.launch({headless: false});
+    const browser = await puppeteer.launch({});
     
     const page = await browser.newPage();
 
@@ -46,13 +46,22 @@ async function scrapeNews(){
     
     //fox sometimes has a popup you need to close by clicking the close popup button. 
     //this checks if the close popup button exists, then closes if necessary.
-    // const foxNewsLetter = ".pf-widget-close";
-    // // const foxElon = "#\33 111078b5b9c1825e4e5c5f6116917e2 > div > div > div > button"
+    
+    let foxNewsLetter = await page.evaluate(() => {
+        let elements = document.getElementsByClassName(".pf-widget-close");
+
+        return elements;
+    });
+    const [button] = await page.$x("//button[contains(., '×')]");
+    if (button) {
+        await button.click();
+    }
+    // const foxElon = "#\33 111078b5b9c1825e4e5c5f6116917e2 > div > div > div > button"
     // if(await page.$(foxNewsLetter) === true){ // for elon pop up, add htis back in '|| await page.$(foxElon) === true'
     //     await page.click(foxNewsLetter);
     //     console.log("attempted to click");
     // }
-    // if(await page.$(foxNewsLetter) === null ){
+    // else{
     //     console.log("fox news letter not found")
     // }
     await page.screenshot({ path: foxPath })
@@ -61,6 +70,7 @@ async function scrapeNews(){
     // await browser.close();
     return 
 }
+
 async function saveToS3(){
     let today = new Date().toISOString().slice(0, 10)
     //name of cnn and fox files
