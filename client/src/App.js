@@ -8,10 +8,10 @@ const App = () => {
     const classes = useStyles();
     return (
         <Container maxWidth = "lg">
-            <AppBar className = {classes.AppBar} position = "static" color = "inherit">
+            <AppBar  position = "static" color = "inherit">
                 <Typography variant = "h2" align = "center">NewsPro</Typography>
-                <Button variant="contained">Sign Up</Button>
-                <Button variant="outlined">Log In</Button>
+                <Button className = {classes.signUp} variant="contained">Sign Up</Button>
+                <Button className = {classes.logIn} variant="outlined">Log In</Button>
             </AppBar>
             <Grow in>
                 <Container>

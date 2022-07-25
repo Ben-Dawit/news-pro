@@ -1,5 +1,6 @@
+import { makeStyles } from "@material-ui/core";
 
-const useStyles = makeStyles((theme) => ({
+export default makeStyles(() => ({
     root: {
       display: 'flex',
       flexWrap: 'wrap',
@@ -10,5 +11,5 @@ const useStyles = makeStyles((theme) => ({
     imageList: {
       width: 500,
       height: 450,
-    },
+    }, 
   }));

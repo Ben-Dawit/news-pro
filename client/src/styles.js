@@ -15,4 +15,8 @@ export default makeStyles(() => ({
     image: {
         marginLeft: '15px',
     },
+    signUp: {
+        justifyContent: 'center',
+        alignItems: 'center'
+    }
 }))

@@ -7,7 +7,7 @@ import ImageListItem from '@material-ui/core/ImageListItem';
 
 const News = () =>{
 
-    //const classes = useStyles();
+    // const classes = useStyles();
 
     return (
         <div>
