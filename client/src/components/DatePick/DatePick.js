@@ -14,7 +14,7 @@ const DatePick = () =>{
             id="date"
             label="News Date"
             type="date"
-            defaultValue="2022-06-25"
+            defaultValue = "mm/dd/yyyy" //`${today}` didn't work, look into this later.
             sx={{ width: 220 }}
             InputLabelProps={{
                 shrink: true,
